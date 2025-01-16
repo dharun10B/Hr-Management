@@ -15,5 +15,6 @@ namespace Hr_Management.Models
         public long Phone { get; set; }
         public string Password { get; set; }
 
+        //public LoginModule Login { get; set; }
     }
 }

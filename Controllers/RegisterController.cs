@@ -58,7 +58,8 @@ namespace Hr_Management.Controllers
                 // Create a new entry in the Login Table
                 var loginEntry = new LoginModule
                 {
-                    EmpId = model.EmpId, // Assuming EmpId is part of the registration model
+                    Email = model.Email,
+                    EmpId = model.EmpId,
                     Password = model.Password // Hash the password
                 };
 

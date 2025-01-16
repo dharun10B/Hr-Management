@@ -4,6 +4,7 @@ using Hr_Management.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hr_Management.Migrations
 {
     [DbContext(typeof(HrManageContext))]
-    partial class HrManageModelSnapshot : ModelSnapshot
+    [Migration("20250116125535_AddTables4")]
+    partial class AddTables4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,6 +45,9 @@ namespace Hr_Management.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EmpId")
+                        .IsUnique();
 
                     b.ToTable("Login");
                 });
@@ -87,6 +93,23 @@ namespace Hr_Management.Migrations
                     b.HasKey("EmpId");
 
                     b.ToTable("Register");
+                });
+
+            modelBuilder.Entity("Hr_Management.Models.LoginModule", b =>
+                {
+                    b.HasOne("Hr_Management.Models.RegisterModule", "Register")
+                        .WithOne("Login")
+                        .HasForeignKey("Hr_Management.Models.LoginModule", "EmpId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Register");
+                });
+
+            modelBuilder.Entity("Hr_Management.Models.RegisterModule", b =>
+                {
+                    b.Navigation("Login")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

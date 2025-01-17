@@ -26,6 +26,12 @@ namespace Hr_Management.Models
 
         public DbSet<LoginModule> Login { get; set; }
         public DbSet<RegisterModule> Register { get; set; }
+        public DbSet<AttendanceModule> Attendances { get; set; }
+        public DbSet<AttendanceDetailsModule> Attendanced { get; set; }
+
+
+
+
 
 
     }

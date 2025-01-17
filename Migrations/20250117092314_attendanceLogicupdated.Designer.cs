@@ -4,6 +4,7 @@ using Hr_Management.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hr_Management.Migrations
 {
     [DbContext(typeof(HrManageContext))]
-    partial class HrManageModelSnapshot : ModelSnapshot
+    [Migration("20250117092314_attendanceLogicupdated")]
+    partial class attendanceLogicupdated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,34 +24,6 @@ namespace Hr_Management.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("Hr_Management.Models.AttendanceDetailsModule", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateOnly>("Date")
-                        .HasColumnType("date");
-
-                    b.Property<int>("EmployeeId")
-                        .HasColumnType("int");
-
-                    b.Property<TimeSpan>("InTime")
-                        .HasColumnType("time");
-
-                    b.Property<TimeSpan>("OutTime")
-                        .HasColumnType("time");
-
-                    b.Property<TimeSpan>("ShortFall")
-                        .HasColumnType("time");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Attendanced");
-                });
 
             modelBuilder.Entity("Hr_Management.Models.AttendanceModule", b =>
                 {
@@ -70,7 +45,7 @@ namespace Hr_Management.Migrations
                     b.Property<TimeSpan>("OutTime")
                         .HasColumnType("time");
 
-                    b.Property<TimeSpan?>("ShortFall")
+                    b.Property<TimeSpan>("ShortFall")
                         .HasColumnType("time");
 
                     b.HasKey("Id");
